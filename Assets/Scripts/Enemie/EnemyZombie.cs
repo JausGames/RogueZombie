@@ -49,7 +49,7 @@ public class EnemyZombie : Enemy
     {
         if (Time.time > standUpTime && ragdoll && !dead)
         {
-            transform.position = spine.position;
+            agent.Warp(spine.position);
             agent.enabled = true;
             anim.SetAnimOn(true);
             ragdoll = false;
@@ -73,7 +73,7 @@ public class EnemyZombie : Enemy
         var wasClosed = isClosed;
         var wasAttacking = isAttacking;
         isClosed = false;
-        Collider[] hitColliders = Physics.OverlapCapsule(transform.position - transform.up, transform.position + transform.up, 0.7f);
+        Collider[] hitColliders = Physics.OverlapCapsule(transform.position - transform.up, transform.position + transform.up * 2f, 0.8f);
         isAttacking = false;
 
         foreach (var hitCollider in hitColliders)
@@ -97,7 +97,7 @@ public class EnemyZombie : Enemy
         if (!agent.enabled) return;
         anim.SetWalk(!isClosed);
         if (isClosed != wasClosed) agent.isStopped = isClosed;
-        agent.SetDestination(player.transform.position);
+        if (!ragdoll && !dead) agent.SetDestination(player.transform.position);
 
     }
 
@@ -105,12 +105,13 @@ public class EnemyZombie : Enemy
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position - transform.up, 0.7f);
-        Gizmos.DrawWireSphere(transform.position + transform.up, 0.7f);
-        Gizmos.DrawLine(transform.position - transform.up, transform.position + transform.up);
+        Gizmos.DrawWireSphere(transform.position, 0.8f);
+        Gizmos.DrawWireSphere(transform.position + transform.up * 2f, 0.8f);
+        Gizmos.DrawLine(transform.position , transform.position + transform.up * 2f);
     }
     public override void GetHitByBullet(Vector3 dir)
     {
+        if (agent.enabled) agent.isStopped = true;
         base.GetHitByBullet(dir);
         anim.SetAnimOn(false);
         standUpTime = Time.time + STAND_UP_TIME;
@@ -118,6 +119,7 @@ public class EnemyZombie : Enemy
     }
     public override void GetHitByCar(Vector3 dir, float damage)
     {
+        if (agent.enabled) agent.isStopped = true;
         var magn = new Vector3(dir.x, 0f, dir.z);
         Debug.Log("GetHitByCar, magnitude = " + magn.magnitude);
         if (magn.magnitude < 4f) return;
