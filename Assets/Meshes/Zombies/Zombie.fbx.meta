@@ -27,7 +27,12 @@ ModelImporter:
   - first:
       74: -3387283470444882496
     second: 'ZombieRig|Attack '
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Head
+    second: {fileID: 2100000, guid: 0edb1492b7c2db74fa9e0e366b5fcb6c, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

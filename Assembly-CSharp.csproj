@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Car\Collider\CarColliders.cs" />
      <Compile Include="Assets\Scripts\Input\Controls.cs" />
      <Compile Include="Assets\Scripts\Pickable\DamageUpBonus.cs" />
+     <Compile Include="Assets\retroshader\Shaders\imageEffects\cPrecision.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkRoundSystem.cs" />
      <Compile Include="Assets\Scripts\Input\PlayerInputs.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkManagerMainMenu.cs" />
@@ -81,6 +82,7 @@
      <Compile Include="Assets\Scripts\Car\ParticleManager.cs" />
      <Compile Include="Assets\Scripts\Main\MatchChecker.cs" />
      <Compile Include="Assets\Scripts\Car\BrakeManager.cs" />
+     <Compile Include="Assets\retroshader\Shaders\Billboard\billboard.cs" />
      <Compile Include="Assets\Scripts\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Enemie\EnemyZombie.cs" />
      <Compile Include="Assets\Scripts\Car\Shield\RoofShield.cs" />
@@ -100,6 +102,7 @@
      <Compile Include="Assets\Scripts\MainMenu\PlayerNameInput.cs" />
      <Compile Include="Assets\Scripts\Input\InputManager.cs" />
      <Compile Include="Assets\Scripts\Car\Shield\RightBodyShield.cs" />
+     <Compile Include="Assets\retroshader\rotate.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkSpawnPlayerSystem.cs" />
      <Compile Include="Assets\Scripts\Car\Shield\TailShield.cs" />
      <Compile Include="Assets\Scripts\Main\PlayerManager.cs" />
@@ -109,13 +112,23 @@
      <Compile Include="Assets\Scripts\Car\Shield\LeftBodyShield.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\retroshader\Shaders\Trasparent\psx-trasparent-unlit.shader" />
+     <None Include="Assets\retroshader\Shaders\Reflective\psx-unlit-mult.shader" />
+     <None Include="Assets\Shader\psx-unlit.shader" />
      <None Include="Assets\ScriptTemplates\51-Mirror__Network Authenticator-NewNetworkAuthenticator.cs.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\retroshader\Shaders\Resources\cPrecision.shader" />
      <None Include="Assets\ScriptTemplates\53-Mirror__Network Observer-NewNetworkObserver.cs.txt" />
+     <None Include="Assets\retroshader\Shaders\Reflective\psx-unlit_noambient-add.shader" />
      <None Include="Assets\ScriptTemplates\56-Mirror__Network Discovery-NewNetworkDiscovery.cs.txt" />
+     <None Include="Assets\retroshader\Shaders\Trasparent\psx-trasparent-vertexlit.shader" />
+     <None Include="Assets\retroshader\Shaders\psx-vertexlit.shader" />
+     <None Include="Assets\retroshader\Shaders\Trasparent\psx-trasparent-unlit-noambient.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\retroshader\Shaders\Reflective\psx-vertexlit-mult.shader" />
      <None Include="Assets\Mirror\version.txt" />
      <None Include="Assets\Mirror\Readme.txt" />
+     <None Include="Assets\retroshader\Shaders\Reflective\psx-vertexlit-add.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -125,10 +138,14 @@
      <None Include="Assets\ScriptTemplates\52-Mirror__Network Behaviour-NewNetworkBehaviour.cs.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\retroshader\Shaders\Reflective\psx-unlit-add.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\Mirror\Plugins\Mono.Cecil\License.txt" />
+     <None Include="Assets\retroshader\Shaders\Reflective\psx-unlit_noambient-mult.shader" />
      <None Include="Assets\ScriptTemplates\55-Mirror__Network Room Player-NewNetworkRoomPlayer.cs.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\retroshader\Shaders\psx-unlit_noambient.shader" />
+     <None Include="Assets\Shader\NewSurfaceShader.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\ScriptTemplates\50-Mirror__Network Manager-NewNetworkManager.cs.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
@@ -136,6 +153,9 @@
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+ <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
@@ -144,6 +164,9 @@
  </Reference>
  <Reference Include="UnityEngine.Monetization">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/UnityEngine.Monetization.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.multiplayer-hlapi.Editor">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
@@ -154,8 +177,14 @@
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.RenderPipelines.Core.Editor">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.InputSystem">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.Core.Runtime">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Purchasing">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/UnityEngine.Purchasing.dll</HintPath>
@@ -166,8 +195,17 @@
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.Universal.Editor">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.Searcher.Editor">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
@@ -183,6 +221,9 @@
  </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
@@ -204,6 +245,12 @@
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ShaderGraph.Editor">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>

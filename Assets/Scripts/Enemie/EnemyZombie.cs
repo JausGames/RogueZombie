@@ -20,6 +20,7 @@ public class EnemyZombie : Enemy
     [SerializeField] private Collider[] collids;
     [SerializeField] private Rigidbody[] bodies;
     [SerializeField] Sprite skinArm;
+    [SerializeField] Sprite skinLeg;
     [SerializeField] Sprite clothArm;
     [SerializeField] Sprite clothBody;
     [SerializeField] Sprite clothLegs;

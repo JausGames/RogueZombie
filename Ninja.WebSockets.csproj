@@ -300,6 +300,9 @@
  <Reference Include="Unity.Analytics.StandardEvents">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
+ <Reference Include="ICSharpCode.NRefactory">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/PackageCache/com.unity.render-pipelines.core@8.2.0/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+ </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.1.9f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
  </Reference>

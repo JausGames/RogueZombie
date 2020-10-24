@@ -278,6 +278,9 @@
  <Reference Include="Unity.Analytics.StandardEvents">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/PackageCache/com.unity.analytics@3.3.5/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
+ <Reference Include="ICSharpCode.NRefactory">
+ <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/PackageCache/com.unity.render-pipelines.core@8.2.0/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
+ </Reference>
  <Reference Include="nunit.framework">
  <HintPath>C:/Users/Utilisateur/Documents/perso/_GIT/RogueZombie/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
