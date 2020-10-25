@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: DoorBuilding.001
+    second: {fileID: 2100000, guid: ce52dfd75a636d744a80cd3a490c29f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass
     second: {fileID: 2100000, guid: b6c371e05001b5144a85e9a01cdacb0d, type: 2}
   - first:
@@ -33,6 +38,11 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Sidewalk
+    second: {fileID: 2100000, guid: 033db3cbf5bcd9846940b3192bbbeb13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sidewalk.001
     second: {fileID: 2100000, guid: 033db3cbf5bcd9846940b3192bbbeb13, type: 2}
   - first:
       type: UnityEngine:Material
