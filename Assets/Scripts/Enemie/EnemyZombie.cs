@@ -18,12 +18,17 @@ public class EnemyZombie : Enemy
     [SerializeField] private bool isAttacking = false;
     [SerializeField] private ZombieAnimatorController anim;
     [SerializeField] private Collider[] collids;
+    [SerializeField] private Collider[] ragdollCollids;
+    [SerializeField] private Collider mainCollid;
+    [SerializeField] private GameObject rig;
     [SerializeField] private Rigidbody[] bodies;
     [SerializeField] Sprite skinArm;
     [SerializeField] Sprite skinLeg;
     [SerializeField] Sprite clothArm;
     [SerializeField] Sprite clothBody;
     [SerializeField] Sprite clothLegs;
+    // Don't set this too high, or NavMesh.SamplePosition() may slow down
+    float onMeshThreshold = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +39,7 @@ public class EnemyZombie : Enemy
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<Car>();
         anim = GetComponentInChildren<ZombieAnimatorController>();
+        body = GetComponent<Rigidbody>();
 
         var colliders = FindObjectOfType<CarColliders>();
         var colsw = colliders.GetWheelColliders();
@@ -45,26 +51,12 @@ public class EnemyZombie : Enemy
                 Physics.IgnoreCollision(col, coll, true);
             }
         }
-    }
-    private void Update()
-    {
-        if (Time.time > standUpTime && ragdoll && !dead)
+        ragdollCollids = rig.GetComponentsInChildren<Collider>();
+        foreach (Collider col in ragdollCollids)
         {
-            agent.Warp(spine.position);
-            agent.enabled = true;
-            anim.SetAnimOn(true);
-            ragdoll = false;
-
-            var colliders = FindObjectOfType<CarColliders>();
-            var cols = colliders.GetColliders();
-            foreach (Collider col in cols)
-            {
-                foreach (Collider coll in collids)
-                {
-                    Debug.Log("Die, kill collider : collider = " + col);
-                    Physics.IgnoreCollision(col, coll, false);
-                }
-            }
+            Physics.IgnoreCollision(col, mainCollid, true);
+            col.GetComponent<Rigidbody>().isKinematic = true;
+            col.enabled = false;
         }
     }
 
@@ -94,59 +86,41 @@ public class EnemyZombie : Enemy
                 }
             }
         }
+        if (Time.time > standUpTime && ragdoll && !dead)
+        {
+            EnableRagdoll(false);
+        }
+        if (!agent.enabled || !IsAgentOnNavMesh()) return;
         if (isAttacking != wasAttacking) anim.SetAttack(isAttacking);
-        if (!agent.enabled) return;
         anim.SetWalk(!isClosed);
         if (isClosed != wasClosed) agent.isStopped = isClosed;
-        if (!ragdoll && !dead) agent.SetDestination(player.transform.position);
+        if (!ragdoll && !dead && !isClosed && !isAttacking && IsAgentOnNavMesh()) agent.SetDestination(player.transform.position);
+
 
     }
 
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 0.8f);
-        Gizmos.DrawWireSphere(transform.position + transform.up * 2f, 0.8f);
-        Gizmos.DrawLine(transform.position , transform.position + transform.up * 2f);
-    }
     public override void GetHitByBullet(Vector3 dir)
     {
         if (agent.enabled) agent.isStopped = true;
         base.GetHitByBullet(dir);
-        anim.SetAnimOn(false);
-        standUpTime = Time.time + STAND_UP_TIME;
-        ragdoll = true;
+        if (!ragdoll) EnableRagdoll(true);
+        else standUpTime = Time.time + STAND_UP_TIME;
     }
+
     public override void GetHitByCar(Vector3 dir, float damage)
     {
-        if (agent.enabled) agent.isStopped = true;
+        if (agent.enabled && IsAgentOnNavMesh()) agent.isStopped = true;
         var magn = new Vector3(dir.x, 0f, dir.z);
         Debug.Log("GetHitByCar, magnitude = " + magn.magnitude);
-        if (magn.magnitude < 4f) return;
-        var force = (-dir + Vector3.up * 5f) * 10f;
-        force = Vector3.up * 30f;
+        if (magn.magnitude < 2f) return;
         if (!GetDamaged(damage * magn.magnitude))
         {
-            var body = GetComponentInChildren<Rigidbody>();
-            //foreach (Rigidbody body in bodies) 
-            spine.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+            Debug.Log("EnemyZombie, GetHitByCar : The dude died");
         };
+        if (!ragdoll) EnableRagdoll(true);
+        else standUpTime = Time.time + STAND_UP_TIME;
 
-        anim.SetAnimOn(false);
-        standUpTime = Time.time + STAND_UP_TIME;
-        ragdoll = true;
-
-        var colliders = FindObjectOfType<CarColliders>();
-        var cols = colliders.GetColliders();
-        /*foreach (Collider col in cols)
-        {
-            foreach (Collider coll in collids)
-            {
-                Debug.Log("Die, kill collider : collider = " + col);
-                Physics.IgnoreCollision(col, coll, true);
-            }
-        }*/
     }
     protected override void Die()
     {
@@ -155,6 +129,32 @@ public class EnemyZombie : Enemy
         dead = true;
 
     }
+    public void EnableRagdoll(bool value)
+    {
+        anim.SetAnimOn(!value);
+        agent.enabled = !value;
+        ragdoll = value;
+        mainCollid.enabled = !value;
+        foreach (Collider col in ragdollCollids)
+        {
+            col.GetComponent<Rigidbody>().isKinematic = !value;
+            col.enabled = value;
+        }
+        //body.isKinematic = value;
+        if (value)
+        {
+            spine.position = agent.transform.position + Vector3.up;
+            standUpTime = Time.time + STAND_UP_TIME;
+        }
+        else
+        {
+            if (transform.position.y < 0f) transform.position = new Vector3(transform.position.x, 0.1f, transform.position.z);
+            body.velocity = Vector3.zero;
+            agent.Warp(spine.position);
+        }
+    }
+
+    //  VISUAL SETUP
     public void SetColor(Color color, bool value)
     {
         var maker = FindObjectOfType<SpriteMaker>();
@@ -188,8 +188,30 @@ public class EnemyZombie : Enemy
         }
     }
 
-    void SetRigidbodyState(bool state)
+    public bool IsAgentOnNavMesh()
     {
+        Vector3 agentPosition = agent.transform.position;
+        NavMeshHit hit;
 
+        // Check for nearest point on navmesh to agent, within onMeshThreshold
+        if (NavMesh.SamplePosition(agentPosition, out hit, onMeshThreshold, NavMesh.AllAreas))
+        {
+            // Check if the positions are vertically aligned
+            if (Mathf.Approximately(agentPosition.x, hit.position.x)
+                && Mathf.Approximately(agentPosition.z, hit.position.z))
+            {
+                // Lastly, check if object is below navmesh
+                return agentPosition.y >= hit.position.y;
+            }
+        }
+
+        return false;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(spine.position, 0.2f);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position + Vector3.up, 0.2f);
     }
 }

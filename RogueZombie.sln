@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{D9B2CD17-004C-1BCE-38F6-32D542619B00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror", "Mirror.csproj", "{9193B51B-D6BC-7E0B-9C28-A41E4C08BC44}"
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror.Weaver", "Mirror.Weaver.csproj", "{443C83FB-D314-16F8-E142-DE71A2419672}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror.Editor", "Mirror.Editor.csproj", "{8704D99A-D6A6-54DC-3EC3-DA36D5008B97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{5EFEE91C-CB95-BF4A-8FAD-65DC7CD7E665}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror.CompilerSymbols", "Mirror.CompilerSymbols.csproj", "{34D1A898-B62B-A6A0-0529-0DC483332525}"
 EndProject
@@ -57,6 +59,10 @@ Global
 		{8704D99A-D6A6-54DC-3EC3-DA36D5008B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8704D99A-D6A6-54DC-3EC3-DA36D5008B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8704D99A-D6A6-54DC-3EC3-DA36D5008B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EFEE91C-CB95-BF4A-8FAD-65DC7CD7E665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EFEE91C-CB95-BF4A-8FAD-65DC7CD7E665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EFEE91C-CB95-BF4A-8FAD-65DC7CD7E665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EFEE91C-CB95-BF4A-8FAD-65DC7CD7E665}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34D1A898-B62B-A6A0-0529-0DC483332525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{34D1A898-B62B-A6A0-0529-0DC483332525}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34D1A898-B62B-A6A0-0529-0DC483332525}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -301,7 +301,7 @@ namespace Inputs
                 {
                     ""name"": ""negative"",
                     ""id"": ""4f3d54ee-7aaa-47c9-b2f8-dd3712b36a0d"",
-                    ""path"": ""<Keyboard>/z"",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -312,7 +312,7 @@ namespace Inputs
                 {
                     ""name"": ""positive"",
                     ""id"": ""aaf19638-3f10-4b4c-853a-b4554324ecb0"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
@@ -356,7 +356,7 @@ namespace Inputs
                 {
                     ""name"": ""negative"",
                     ""id"": ""10c6505b-8327-41dc-b1f6-d687c84fefee"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",

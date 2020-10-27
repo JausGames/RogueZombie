@@ -25,6 +25,7 @@ public class Car : MonoBehaviour
     private int blinkTime = 5;
 
     [SerializeField] private bool engineOn = false;
+    [SerializeField] private float maxLife;
     [SerializeField] private float life;
     [SerializeField] private bool isAlive = true;
     [SerializeField] private GameObject cameraUser;
@@ -43,6 +44,7 @@ public class Car : MonoBehaviour
     private void Awake()
     {
         life = 250 + 3 * LIFE;
+        maxLife = 250 + 3 * LIFE;
         colliders = GetComponentInChildren<CarColliders>();
     }
     private void Start()
@@ -139,6 +141,11 @@ public class Car : MonoBehaviour
             life -= amount;
             return true;
         }
+    }
+    public void HealLife(float amount)
+    {
+        if (life + amount > maxLife) life = maxLife;
+        else life += amount;
     }
     public void Die()
     {
